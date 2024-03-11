@@ -3,7 +3,7 @@
 env ?= prod
 export KUBECONFIG = $(shell pwd)/kubeconfig.yaml
 
-default: boot cluster
+default: cluster
 
 ~/.ssh/id_ed25519:
 	ssh-keygen -t ed25519 -P '' -f "$@"
