@@ -90,7 +90,7 @@
 
 - name: Write Kubernetes config file with the correct cluster address
   ansible.builtin.copy:
-    content: "{{ kubeconfig_base64.content | b64decode | replace('127.0.0.1', control_plane_endpoint) }}"
+    content: "{{ kubeconfig_base64.content | b64decode | replace('127.0.0.1', '94.130.164.224') }}"
     dest: "{{ playbook_dir }}/kubeconfig.yaml"
     mode: 0600
   delegate_to: localhost

@@ -7,17 +7,17 @@
     release_namespace: "{{ cilium_namespace }}"
     values: "{{ cilium_values }}"
 
-- name: Wait for Cilium CRDs
-  kubernetes.core.k8s_info:
-    kind: CustomResourceDefinition
-    name: "{{ item }}"
-  loop:
-    - ciliuml2announcementpolicies.cilium.io
-    - ciliumloadbalancerippools.cilium.io
-  register: crd
-  until: crd.resources | length > 0
-  retries: 5
-  delay: 10
+#- name: Wait for Cilium CRDs
+#  kubernetes.core.k8s_info:
+#    kind: CustomResourceDefinition
+#    name: "{{ item }}"
+#  loop:
+#    - ciliuml2announcementpolicies.cilium.io
+#    - ciliumloadbalancerippools.cilium.io
+#  register: crd
+#  until: crd.resources | length > 0
+#  retries: 5
+#  delay: 10
 
 - name: Apply Cilium resources
   kubernetes.core.k8s:

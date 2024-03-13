@@ -1,8 +1,8 @@
 all:
   vars:
-    control_plane_endpoint: 94.130.164.224
+    control_plane_endpoint: "2a01:4f8:13b:2769:1::"
     load_balancer_ip_pool:
-      - 94.130.164.224/32 
+      - "2a01:4f8:13b:2769:1::/32"
 metal:
   children:
     masters:

@@ -5,8 +5,9 @@ export KUBECONFIG = $(shell pwd)/kubeconfig.yaml
 
 default: cluster
 
-~/.ssh/id_ed25519:
-	ssh-keygen -t ed25519 -P '' -f "$@"
+# TODO
+#~/.ssh/id_ed25519:
+#	ssh-keygen -t ed25519 -P '' -f "$@"
 
 boot: ~/.ssh/id_ed25519
 	ansible-playbook \

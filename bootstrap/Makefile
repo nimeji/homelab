@@ -1,6 +1,10 @@
 .POSIX:
 
-default: namespace argocd root
+default: kubeconfig namespace argocd root
+
+# TODO is this needed?
+kubeconfig:
+	export KUBECONFIG=../metal/kubeconfig.yaml
 
 namespace:
 	kubectl create namespace argocd --dry-run=client --output=yaml \
