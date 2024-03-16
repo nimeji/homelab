@@ -3,5 +3,7 @@ kind: CiliumL2AnnouncementPolicy
 metadata:
   name: default
 spec:
+  interfaces:
+    - ^zt[a-z0-9]+
   externalIPs: true
   loadBalancerIPs: true

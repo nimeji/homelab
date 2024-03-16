@@ -1,15 +1,14 @@
 module "cloudflare" {
   source                = "./modules/cloudflare"
   cloudflare_account_id = var.cloudflare_account_id
-  cloudflare_email      = var.cloudflare_email
-  cloudflare_api_key    = var.cloudflare_api_key
+  cloudflare_api_token    = var.cloudflare_api_token
 }
 
 module "zerotier" {
   source                 = "./modules/zerotier"
   zerotier_central_token = var.zerotier_central_token
   bridged_routes = [
-    "94.130.164.224/32"
+    "10.147.17.224/28"
   ]
 }
 

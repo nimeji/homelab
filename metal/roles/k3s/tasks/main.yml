@@ -82,6 +82,7 @@
   until: k3s_service is succeeded
   retries: 5
 
+# TODO
 - name: Get Kubernetes config file
   run_once: true
   ansible.builtin.slurp:

@@ -2,14 +2,14 @@
 
 default: apply
 
-~/.terraform.d/credentials.tfrc.json:
+/root/.terraform.d/credentials.tfrc.json:
 	terraform login
 
 terraform.tfvars:
 	cp terraform.tfvars.example ${@}
 	nvim ${@}
 
-.terraform.lock.hcl: ~/.terraform.d/credentials.tfrc.json versions.tf terraform.tfvars
+.terraform.lock.hcl: /root/.terraform.d/credentials.tfrc.json versions.tf terraform.tfvars
 	terraform init
 	touch ${@}
 

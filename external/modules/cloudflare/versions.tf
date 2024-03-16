@@ -2,7 +2,7 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.11.0"
+      version = "~> 4.0.0"
     }
 
     kubernetes = {
@@ -18,6 +18,5 @@ terraform {
 }
 
 provider "cloudflare" {
-  email   = var.cloudflare_email
-  api_key = var.cloudflare_api_key
+  api_token = var.cloudflare_api_token
 }
