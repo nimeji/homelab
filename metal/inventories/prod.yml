@@ -7,4 +7,4 @@ metal:
   children:
     masters:
       hosts:
-        metal0: {ansible_host: 10.147.17.9, mac: '88:d7:f6:7c:2e:ca', disk: md, network_interface: ztjlhyr3jq}
+        metal0: {ansible_host: 10.147.17.2, mac: '88:d7:f6:7c:2e:ca', disk: md, network_interface: ztjlhyr3jq}
