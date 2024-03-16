@@ -5,8 +5,7 @@
 KUBECONFIG = $(shell pwd)/metal/kubeconfig.yaml
 KUBE_CONFIG_PATH = $(KUBECONFIG)
 
-# TODO
-default: metal bootstrap external #smoke-test post-install clean
+default: metal bootstrap external smoke-test post-install
 
 configure:
 	./scripts/configure
@@ -25,7 +24,7 @@ smoke-test:
 	make -C test filter=Smoke
 
 post-install:
-	@./scripts/hacks
+	python3 scripts/hacks
 
 tools:
 	@docker run \
