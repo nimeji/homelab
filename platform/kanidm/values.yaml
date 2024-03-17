@@ -9,7 +9,9 @@ app-template:
             tag: 1.1.0-rc.15
       statefulset:
         volumeClaimTemplates:
-          - name: data
+          - apiVersion: v1
+            kind: PersistentVolumeClaim
+            name: data
             size: 1Gi
             globalMounts:
               - path: /data
