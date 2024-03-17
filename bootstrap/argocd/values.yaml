@@ -28,12 +28,8 @@ argo-cd:
       ingressClassName: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
-      hosts:
-        - &host argocd.nimeji.com
-      tls:
-        - secretName: argocd-tls-certificate
-          hosts:
-            - *host
+      hostname: argocd.nimeji.com
+      tls: true
     metrics: &metrics
       enabled: true
       serviceMonitor:
