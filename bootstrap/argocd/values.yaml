@@ -1,4 +1,7 @@
 argo-cd:
+  configs:
+    params:
+      controller.diff.server.side: "true"
   server:
     extraArgs:
       - --insecure
