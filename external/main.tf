@@ -8,7 +8,7 @@ module "zerotier" {
   source                 = "./modules/zerotier"
   zerotier_central_token = var.zerotier_central_token
   bridged_routes = [
-    "10.147.17.224/28"
+    "10.147.2.224/28"
   ]
 }
 

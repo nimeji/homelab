@@ -1,10 +1,10 @@
 all:
   vars:
-    control_plane_endpoint: "10.147.17.11"
+    control_plane_endpoint: "10.147.2.11"
     load_balancer_ip_pool:
-      - "10.147.17.224/28"
+      - "10.147.2.224/28"
 metal:
   children:
     masters:
       hosts:
-        metal0: {ansible_host: 10.147.17.2, mac: '88:d7:f6:7c:2e:ca', disk: md, network_interface: ztjlhyr3jq}
+        metal0: {ansible_host: 10.147.17.231, mac: '88:d7:f6:7c:2e:ca', disk: md, network_interface: ztjlhyr3jq}
