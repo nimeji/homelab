@@ -133,7 +133,6 @@ func main() {
 	}
 
 	for _, randomSecret := range randomSecrets {
-	    log.Printf(randomSecret)
 	    log.Printf("trying to generate secret for '%s'", randomSecret.Name)
 		err := createOrUpdateSecret(client, randomSecret.Name, randomSecret)
 		if err != nil {
