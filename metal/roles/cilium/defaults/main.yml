@@ -2,6 +2,7 @@ cilium_repo_url: https://helm.cilium.io
 cilium_version: 1.15.1
 cilium_namespace: kube-system
 cilium_values:
+  devices: zt+
   operator:
     replicas: 1
   kubeProxyReplacement: true

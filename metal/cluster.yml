@@ -1,7 +1,7 @@
 - name: Create Kubernetes cluster
   hosts: metal
   roles:
-    # - prerequisites
+    - prerequisites
     - k3s
     # TODO enable automatic updates
     #- automatic_upgrade
