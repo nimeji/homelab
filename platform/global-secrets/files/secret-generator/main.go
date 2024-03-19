@@ -65,6 +65,7 @@ func readConfigFile(filename string) ([]RandomSecret, error) {
 }
 
 func createOrUpdateSecret(client *kubernetes.Clientset, name string, randomSecret RandomSecret) error {
+    log.Printf("trying to generate secret for '%s'", name)
 	secret, err := client.CoreV1().Secrets(namespace).Get(context.Background(), name, metav1.GetOptions{})
 
 	if err != nil {
