@@ -16,6 +16,14 @@
     - key: client_secret
       length: 32
       special: false
+- name: kanidm.dex
+  data:
+    - key: KANIDM_CLIENT_SECRET
+      length: 32
+      special: false
+    - key: KANIDM_CLIENT_ID
+      length: 32
+      special: false
 
 # Registry
 - name: registry.admin
