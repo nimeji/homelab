@@ -59,53 +59,12 @@ app-template:
               provider: google
               target: _blank
         services.yaml: |
-          - Popular:
-            - Matrix:
-                href: https://chat.nimeji.com
-                description: Chat client
-                icon: element.svg
-            - Jellyfin:
-                href: https://jellyfin.nimeji.com
-                description: Media system (movies, music, etc.)
-                icon: jellyfin.svg
-            - Jellyseerr:
-                href: https://jellyseerr.nimeji.com
-                description: Request media
-                icon: jellyseerr.svg
-            - Paperless:
-                href: https://paperless.nimeji.com
-                description: Document management system
-                icon: paperless.svg
           - Management:
-            - Transmission:
-                href: https://transmission.nimeji.com
-                description: Bittorrent client
-                icon: transmission.svg
-            - Prowlarr:
-                href: https://prowlarr.nimeji.com
-                description: Indexer manager
-                icon: prowlarr.svg
-            - Radarr:
-                href: https://radarr.nimeji.com
-                description: Movie manager
-                icon: radarr.svg
-            - Sonarr:
-                href: https://sonarr.nimeji.com
-                description: TV show manager
-                icon: sonarr.svg
             - Kanidm:
                 href: https://auth.nimeji.com
                 description: Identity management
                 icon: https://auth.nimeji.com/pkg/img/logo-square.svg
           - Development:
-            - Gitea:
-                href: https://git.nimeji.com
-                description: Git forge
-                icon: gitea.svg
-            - Woodpecker:
-                href: https://ci.nimeji.com
-                description: Continuous integration
-                icon: woodpecker-ci.svg
             - ArgoCD:
                 href: https://argocd.nimeji.com
                 description: Continuous deployment
@@ -129,11 +88,8 @@ app-template:
                 icon: openspeedtest.png
         bookmarks.yaml: |
           - Homelab:
-            - Documentation:
-              - href: https://homelab.nimeji.com
-                icon: google-docs.svg
-            - Public homelab repository:
-              - href: https://github.com/khuedoan/homelab
+            - Repository:
+              - href: https://github.com/nimeji/homelab
                 icon: github.svg
           - Managed services:
             - Cloudflare:
@@ -145,16 +101,3 @@ app-template:
             - Zerotier:
               - href: https://my.zerotier.com
                 icon: zerotier.svg
-          - Infrastructure:
-            - Router:
-              - href: https://192.168.1.1
-                icon: router.svg
-            - Proxmox:
-              - href: https://proxmox:8006
-                icon: proxmox.svg
-            - Google Cloud:
-              - href: https://console.cloud.google.com
-                icon: google-cloud-platform.svg
-            - Oracle Cloud:
-              - href: https://cloud.oracle.com
-                icon: oracle-cloud.svg

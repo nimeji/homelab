@@ -7,16 +7,11 @@ TODO: retire this script
 
 import base64
 import json
-import json
 import pexpect
-import requests
 import subprocess
-import sys
-import urllib
-
-from rich.console import Console
 from kubernetes import client, config
 from kubernetes.stream import stream
+from rich.console import Console
 
 # https://git.khuedoan.com/user/settings/applications
 # Doing this properly inside the cluster requires:
@@ -46,65 +41,6 @@ def apply_secret(name: str, namespace: str, data: dict) -> None:
             data=data,
         )
         client.CoreV1Api().create_namespaced_secret(namespace, new_secret)
-
-def setup_gitea_access_token(name: str, scopes: list[str]) -> None:
-    current_tokens = requests.get(
-        url=f"{gitea_url}/api/v1/users/{gitea_user}/tokens",
-        auth=(gitea_user,gitea_pass),
-        verify=False,
-    ).json()
-
-    if not any(token['name'] == name for token in current_tokens):
-        resp = requests.post(
-            url=f"{gitea_url}/api/v1/users/{gitea_user}/tokens",
-            auth=(gitea_user,gitea_pass),
-            headers={
-                'Content-Type': 'application/json'
-            },
-            data=json.dumps({
-                'name': name,
-                'scopes': scopes
-            }),
-            verify=False,
-        )
-
-        if resp.status_code == 201:
-            apply_secret(
-                f"gitea.{name}",
-                "global-secrets",
-                {
-                    'token': base64.b64encode(resp.json()['sha1'].encode("utf-8")).decode("utf-8")
-                }
-            )
-        else:
-            print(f"Error creating access token {name} ({resp.status_code})")
-            print(resp.content)
-            sys.exit(1)
-
-def setup_gitea_auth_with_dex():
-    gitea_pod = client.CoreV1Api().list_namespaced_pod(namespace='gitea', label_selector='app=gitea').items[0].metadata.name
-    client_secret = base64.b64decode(
-        client.CoreV1Api().read_namespaced_secret('dex.gitea', 'global-secrets').data['client_secret']
-    ).decode("utf-8")
-    discovery_url = f"https://{client.NetworkingV1Api().read_namespaced_ingress('dex', 'dex').spec.rules[0].host}/.well-known/openid-configuration"
-
-    # TODO currently there's no API to add new authentication sources in Gitea,
-    # so we have to workaround by running Gitea CLI in a Gitea pod.
-    stream(
-        client.CoreV1Api().connect_get_namespaced_pod_exec,
-        gitea_pod,
-        'gitea',
-        command=[
-            'gitea', 'admin', 'auth', 'add-oauth',
-            '--name', 'Dex',
-            '--provider', 'openidConnect',
-            '--key', 'gitea',
-            '--secret', client_secret,
-            '--auto-discover-url', discovery_url
-        ],
-        stderr=True, stdin=False,
-        stdout=False, tty=False
-    )
 
 def reset_kanidm_account_password(account: str) -> str:
     resp = stream(
@@ -177,19 +113,6 @@ def setup_kanidm_oauth_app(name: str, redirect_uri: str) -> None:
 
 def main() -> None:
     with Console().status("Completing the remaining sorcery"):
-        gitea_access_tokens = [
-            {
-                'name': 'renovate',
-                'scopes': [
-                    "write:repository",
-                    "read:user",
-                    "write:issue",
-                    "read:organization",
-                    "read:misc"
-                ]
-            }
-        ]
-
         kanidm_groups = [
             # TODO better group management
             {'name': 'editor'},
@@ -198,11 +121,6 @@ def main() -> None:
         kanidm_oauth_apps = [
             {'name': 'dex', 'redirect_uri': f"https://{client.NetworkingV1Api().read_namespaced_ingress('dex', 'dex').spec.rules[0].host}/callback"},
         ]
-
-        for token in gitea_access_tokens:
-            setup_gitea_access_token(token['name'], token['scopes'])
-
-        setup_gitea_auth_with_dex()
 
         kanidm_login(["admin", "idm_admin"])
 
