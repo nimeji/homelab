@@ -1,0 +1,72 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: act-runner-vol
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: runner-secret
+  namespace: {{ .Release.Namespace }}
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: vault
+  target:
+    name: runner-secret
+  data:
+    - secretKey: token
+      remoteRef:
+        key: /gitea/runner
+        property: token
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: act-runner
+  name: act-runner
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: act-runner
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: act-runner
+    spec:
+      restartPolicy: Always
+      volumes:
+        - name: runner-data
+          persistentVolumeClaim:
+            claimName: act-runner-vol
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: runner
+          image: gitea/act_runner:nightly-dind-rootless
+          imagePullPolicy: Always
+          # command: ["sh", "-c", "while ! nc -z localhost 2376 </dev/null; do echo 'waiting for docker daemon...'; sleep 5; done; /sbin/tini -- /opt/act/run.sh"]
+          env:
+            - name: DOCKER_HOST
+              value: unix:///var/run/user/1000/docker.sock
+            - name: GITEA_INSTANCE_URL
+              value: http://gitea-http:3000
+            - name: GITEA_RUNNER_REGISTRATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: runner-secret
+                  key: token
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: runner-data
+              mountPath: /data

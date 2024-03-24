@@ -22,17 +22,12 @@ gitea:
         ROOT_URL: https://git.nimeji.com
         OFFLINE_MODE: true
       repository:
-        DISABLED_REPO_UNITS: repo.wiki,repo.projects,repo.packages
+        DISABLED_REPO_UNITS: repo.wiki,repo.projects
         DISABLE_STARS: true
         DEFAULT_BRANCH: master
       service.explore:
         DISABLE_USERS_PAGE: true
       actions:
-        ENABLED: false
+        ENABLED: true
       webhook:
         ALLOWED_HOST_LIST: private
-    oauth:
-      - name: "Woodpecker"
-        provider: "openidConnect"
-        existingSecret: woodpecker-oauth
-        autoDiscoverUrl: "https://git.nimeji.com/.well-known/openid-configuration"
