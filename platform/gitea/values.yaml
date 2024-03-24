@@ -31,3 +31,8 @@ gitea:
         ENABLED: false
       webhook:
         ALLOWED_HOST_LIST: private
+    oauth:
+      - name: "Woodpecker"
+        provider: "openidConnect"
+        existingSecret: woodpecker-oauth
+        autoDiscoverUrl: "https://git.nimeji.com/.well-known/openid-configuration"
