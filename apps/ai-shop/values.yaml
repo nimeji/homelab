@@ -1,0 +1,8 @@
+appVersion: 0.0.20
+postgresql:
+  auth:
+    username: ai-shop
+    database: ai-shop
+    existingSecret: ai-shop-db
+    secretKeys:
+      userPasswordKey: password

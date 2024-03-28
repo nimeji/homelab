@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-shop-frontend
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: ai-shop-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ai-shop-frontend
+    spec:
+      containers:
+        - name: ai-shop-frontend
+          image: git.nimeji.com/nimeji/ai-shop-frontend:{{ .Values.appVersion }}
+          ports:
+            - containerPort: 3000
+          env:
+            - name: API_URL
+              value: https://ai-shop.nimeji.com
+            - name: SITE_NAME
+              value: Ai-Shop

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-shop-backend
+  namespace: {{ .Release.Namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: ai-shop-backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: ai-shop-backend
+    spec:
+      containers:
+        - name: ai-shop-backend
+          image: git.nimeji.com/nimeji/ai-shop-backend:{{ .Values.appVersion }}
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: ai-shop-backend
+          env:
+            - name: DB_USER
+              value: ai-shop
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ai-shop-db
+                  key: password
+            - name: JDBC_URL
+              value: jdbc:postgresql://ai-shop-postgresql:5432/ai-shop

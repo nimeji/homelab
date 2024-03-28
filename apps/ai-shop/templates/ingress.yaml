@@ -1,0 +1,37 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ai-shop
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: ai-shop
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - ai-shop.nimeji.com
+      secretName: ai-shop-tls
+  rules:
+    - host: ai-shop.nimeji.com
+      http:
+        paths:
+          - path: /api(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-shop-backend
+                port:
+                  number: 80
+    - host: ai-shop.nimeji.com
+      http:
+        paths:
+          - path: /()(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ai-shop-frontend
+                port:
+                  number: 80
