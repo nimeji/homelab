@@ -1,9 +1,0 @@
-gha-runner-scale-set:
-  githubConfigUrl: "https://github.com/com-nimeji"
-  githubConfigSecret: gh-token-secret
-  containerMode:
-    type: "dind"
-  maxRunners: 2
-  controllerServiceAccount:
-    namespace: gha-runner-scale-set-controller
-    name: gha-runner-scale-set-controller-gha-rs-controller

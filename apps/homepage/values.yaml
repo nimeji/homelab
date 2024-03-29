@@ -69,15 +69,15 @@ app-template:
                 href: https://argocd.nimeji.com
                 description: Continuous deployment
                 icon: argocd.svg
-            - Registry:
-                href: https://registry.nimeji.com
-                description: Container registry
-                icon: docker.svg
+            - Git:
+                href: https://git.nimeji.com
+                description: Gitea
+                icon: gitea.svg
             - Grafana:
                 href: https://grafana.nimeji.com
                 description: Observability dashboards
                 icon: grafana.svg
-          - Utilities:
+          - Apps:
             - Excalidraw:
                 href: https://draw.nimeji.com
                 description: Virtual whiteboard
@@ -86,6 +86,9 @@ app-template:
                 href: https://speedtest.nimeji.com
                 description: Internal network speed test
                 icon: openspeedtest.png
+            - Ai-Shop:
+                href: https://ai-shop.nimeji.com
+                desciption: Ai-Shop Project
         bookmarks.yaml: |
           - Homelab:
             - Repository:
