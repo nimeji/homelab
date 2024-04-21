@@ -21,5 +21,7 @@ spec:
           env:
             - name: API_URL
               value: https://ai-shop.nimeji.com
+            - name: IMAGE_URL
+              value: https://images.ai-shop.nimeji.com
             - name: SITE_NAME
               value: Ai-Shop
