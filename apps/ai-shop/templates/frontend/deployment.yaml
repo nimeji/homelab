@@ -20,7 +20,7 @@ spec:
             - containerPort: 3000
           env:
             - name: API_URL
-              value: https://ai-shop.nimeji.com
+              value: https://ai-shop.nimeji.com/api
             - name: IMAGE_URL
               value: https://images.ai-shop.nimeji.com
             - name: SITE_NAME
