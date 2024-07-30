@@ -32,3 +32,5 @@ gitea:
         ENABLED: true
       webhook:
         ALLOWED_HOST_LIST: private
+  persistence:
+    size: 50Gi
