@@ -20,9 +20,15 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: API_URL
-              value: https://ai-shop.nimeji.com/api
-            - name: IMAGE_URL
+            - name: HOSTNAME
+              value: ai-shop.nimeji.com
+            - name: IMAGE_CDN_URL
               value: https://images.ai-shop.nimeji.com
-            - name: SITE_NAME
-              value: Ai-Shop
+            - name: PUBLIC_STORE_DOMAIN
+              value: quickstart-be0c852d.myshopify.com
+            - name: PUBLIC_STOREFRONT_API_TOKEN
+              value: acbd231f90492b1833c47433122b1307
+            - name: PUBLIC_CHECKOUT_DOMAIN
+              value: checkout.quickstart-be0c852d.myshopify.com
+            - name: SHOPIFY_APP_METAFIELD_NAMESPACE
+              value: app--146622644225--printify
