@@ -23,6 +23,8 @@ spec:
             - secretRef:
                 name: ai-shop-frontend
           env:
+            - name: NODE_ENV
+              value: production
             - name: HOSTNAME
               value: ai-shop.nimeji.com
             - name: IMAGE_CDN_URL
