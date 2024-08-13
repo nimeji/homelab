@@ -27,13 +27,3 @@ spec:
                 name: ai-shop-backend
                 port:
                   number: 80
-    - host: ai-shop.nimeji.com
-      http:
-        paths:
-          - path: /()(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: ai-shop-frontend
-                port:
-                  number: 80
