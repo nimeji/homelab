@@ -1,4 +1,4 @@
-appVersion: 0.0.57
+appVersion: 0.0.58
 postgresql:
   auth:
     username: ai-shop
