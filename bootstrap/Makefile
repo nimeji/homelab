@@ -2,7 +2,6 @@
 
 default: kubeconfig namespace argocd root
 
-# TODO is this needed?
 kubeconfig:
 	export KUBECONFIG=../metal/kubeconfig.yaml
 

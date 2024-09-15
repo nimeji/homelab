@@ -7,10 +7,6 @@ KUBE_CONFIG_PATH = $(KUBECONFIG)
 
 default: metal bootstrap external
 
-configure:
-	./scripts/configure
-	git status
-
 metal:
 	make -C metal
 

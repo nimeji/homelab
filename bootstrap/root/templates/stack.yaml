@@ -8,8 +8,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: {{ $.Values.gitops.repo }}
-        revision: {{ $.Values.gitops.revision }}
+        repoURL: {{ $stack.repo }}
+        revision: master
         directories:
           - path: {{ $stack.name }}/*
   template:
@@ -21,9 +21,9 @@ spec:
         namespace: '{{ default `{{path.basename}}` $stack.namespace }}'
       project: default # TODO
       source:
-        repoURL: {{ $.Values.gitops.repo }}
+        repoURL: {{ $stack.repo }}
         path: '{{ `{{path}}` }}'
-        targetRevision: {{ $.Values.gitops.revision }}
+        targetRevision: master
       syncPolicy:
         automated:
           prune: true

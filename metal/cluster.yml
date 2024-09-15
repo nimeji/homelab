@@ -2,10 +2,7 @@
   hosts: metal
   roles:
     - prerequisites
+    - nginx
     - k3s
     # TODO enable automatic updates
     #- automatic_upgrade
-- name: Install Kubernetes addons
-  hosts: localhost
-  roles:
-    - cilium
