@@ -1,7 +1,7 @@
 locals {
   router_ip = cidrhost(var.managed_route, 1) # Use the second IP in the VPN subnet as the router
 }
-
+zerotier api
 resource "zerotier_network" "network" {
   name        = var.name
   description = var.description

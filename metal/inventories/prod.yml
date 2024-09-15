@@ -2,4 +2,4 @@ metal:
   children:
     masters:
       hosts:
-        metal0: {ansible_host: 94.130.164.224, ansible_python_interpreter:/usr/bin/python3}
+        metal0: {ansible_host: 94.130.164.224, ansible_python_interpreter: /usr/bin/python3, default_network_interface: enp6s0}

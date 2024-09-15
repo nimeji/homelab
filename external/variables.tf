@@ -10,12 +10,3 @@ variable "cloudflare_account_id" {
 variable "zerotier_central_token" {
   type = string
 }
-
-variable "ntfy" {
-  type = object({
-    url   = string
-    topic = string
-  })
-
-  sensitive = true
-}

@@ -11,8 +11,3 @@ module "zerotier" {
     "10.100.0.0/24"
   ]
 }
-
-module "ntfy" {
-  source = "./modules/ntfy"
-  auth   = var.ntfy
-}

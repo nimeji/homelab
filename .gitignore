@@ -9,3 +9,4 @@ obsidian/
 *kubeconfig.yaml
 Chart.lock
 .info
+metal/secrets.yaml

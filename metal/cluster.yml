@@ -1,8 +1,11 @@
 - name: Create Kubernetes cluster
   hosts: metal
+  vars_files:
+    - secrets.yaml
   roles:
     - prerequisites
     - nginx
+    - zerotier
     - k3s
     # TODO enable automatic updates
     #- automatic_upgrade
