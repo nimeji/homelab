@@ -1,0 +1,9 @@
+---
+# UFW
+- include_tasks: ufw.yaml
+
+# SSH
+- include_tasks: sshd.yaml
+
+# Fail2Ban
+- include_tasks: fail2ban.yaml

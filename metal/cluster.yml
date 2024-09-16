@@ -4,6 +4,7 @@
     - secrets.yaml
   roles:
     - prerequisites
+    - security
     - nginx
     - zerotier
     - k3s
