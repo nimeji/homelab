@@ -10,5 +10,3 @@
         - cert-manager
         - cloudflared
         - external-dns
-        - k8up-operator
-        - monitoring-system
