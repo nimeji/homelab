@@ -9,6 +9,14 @@
     - port: 30000
       proto: udp
 
+# wireguard
+- name: Enable IP forwarding
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+    reload: yes
+
 - name: Enable ufw
   ufw:
     state: enabled
