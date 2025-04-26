@@ -9,6 +9,7 @@ k3s_server_config:
     - local-storage
     - servicelb
     - traefik
+    - metrics-server
   disable-helm-controller: true
   disable-network-policy: true
   secrets-encryption: true
