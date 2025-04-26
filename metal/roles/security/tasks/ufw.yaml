@@ -6,6 +6,8 @@
   loop:
     - port: 22
       proto: tcp
+    - port: 30000
+      proto: udp
 
 - name: Enable ufw
   ufw:
