@@ -11,5 +11,4 @@ k3s_server_config:
     - traefik
     - metrics-server
   disable-helm-controller: true
-  disable-network-policy: true
   secrets-encryption: true
